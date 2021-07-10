@@ -9,6 +9,8 @@
     - name: install nginx ec2
       apt:
        name="nginx"
-       state=absent 
+       state=present 
        update_cache=true
+    - name: uninstall nginx ec2
+      shell: apt-get remove nginx
  
