@@ -1,13 +1,40 @@
-- name: Hello World Sample
+---
+- name: Create a new Demo EC2 instance
   hosts: all
   become: true
+  gather_facts: False
+
+  vars:
+      region: ap-southeast-1
+      instance_type: t2.micro
+      ami: ami-055147723b7bca09a
+      keypair: ASEF-A
+      subnetid: subnet-0a2fdf7cd30d96543
+      user_access_key: "AKIAYMZTUP7QNPPL2MNF"
+      user_secret_key: "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"
+ 
   tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello World!"
-        
-    - name: install nginx ec2
-      apt:
-       name="nginx"
-       state=present 
-       update_cache=true
+
+    - name: Create an ec2 instance
+      ec2:
+         key_name: "{{ keypair }}"
+         group: SG-ASEF
+ # security group name
+         instance_type: "{{ instance_type }}"
+         image: "{{ ami }}"
+         wait: true
+         region: "{{ region }}"
+         count: 1  # default
+         count_tag:
+            Name: Demo
+         instance_tags:
+            Name: Demo
+         vpc_subnet_id: "{{ subnetid }}"
+         assign_public_ip: yes
+         aws_access_key: "{{ user_access_key }}"
+         aws_secret_key: "{{ user_secret_key }}" 
+         volumes:
+           - device_name: /dev/sda1
+             volume_type: gp2
+             volume_size: 8
+      register: ec2
