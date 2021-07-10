@@ -6,7 +6,7 @@
       debug:
         msg: "Hello World!"
         
-    - name: install nginx
+    - name: install nginx ec2
       apt:
        name="nginx"
        state=present 
