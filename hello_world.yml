@@ -11,6 +11,3 @@
        name="nginx"
        state=present 
        update_cache=true
-    - name: uninstall nginx ec2
-      shell: apt-get remove nginx -y
- 
