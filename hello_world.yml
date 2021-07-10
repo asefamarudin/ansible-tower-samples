@@ -9,6 +9,6 @@
     - name: install nginx ec2
       apt:
        name="nginx"
-       state=present 
+       state=absent 
        update_cache=true
  
