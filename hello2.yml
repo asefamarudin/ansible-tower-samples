@@ -9,8 +9,8 @@
       ami: ami-055147723b7bca09a
       keypair: ASEF-A
       subnetid: subnet-0a2fdf7cd30d96543
-      user_access_key: "AKIAYMZTUP7QNPPL2MNF"
-      user_secret_key: "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"
+      user_access_key: "xxx"
+      user_secret_key: "xxxx"
  
   tasks:
 
